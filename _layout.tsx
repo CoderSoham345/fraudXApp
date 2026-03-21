@@ -1,29 +1,68 @@
-import { Stack } from 'expo-router';
-import { AuthProvider } from '../contexts/AuthContext';
-import { StatusBar } from 'expo-status-bar';
+import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function RootLayout() {
+export default function TabsLayout() {
   return (
-    <AuthProvider>
-      <StatusBar style="light" />
-      <Stack screenOptions={{
+    <Tabs
+      screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: '#0a0a0a' },
-        animation: 'slide_from_right'
-      }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="login" />
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="send-money" />
-        <Stack.Screen 
-          name="fraud-alert" 
-          options={{
-            presentation: 'transparentModal',
-            animation: 'fade'
-          }} 
-        />
-        <Stack.Screen name="account-frozen" />
-      </Stack>
-    </AuthProvider>
+        tabBarStyle: {
+          backgroundColor: '#1f2937',
+          borderTopWidth: 1,
+          borderTopColor: '#374151',
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
+        tabBarActiveTintColor: '#3b82f6',
+        tabBarInactiveTintColor: '#9ca3af',
+      }}
+    >
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          title: 'History',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="time" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="news"
+        options={{
+          title: 'News',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="newspaper" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="location"
+        options={{
+          title: 'Location',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="location" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 }
